@@ -144,12 +144,35 @@ public class SdkNftServiceTest {
     public void updateStockInfo() {
         // 同质化：0x35536ef68281e4a503a3a884c59ef098cf95627b
         UpdateStockInfoBo bo = new UpdateStockInfoBo();
+        bo.setAddress(address);
+        bo.setPublicKey(publicKey);
+        bo.setPrivateKey(privateKey);
+        bo.setContractAddress("0x35536ef68281e4a503a3a884c59ef098cf95627b");
+        bo.setUrl("ipfs://abc123456.ca");
+        bo.setUrlHash("xxx123");
+        // bo.setPrice(2990L);
+        // bo.setSellStatus(1);
 
+        String txHash = sdkNftService.updateStockInfo(bo);
+        System.out.println(txHash);
     }
 
     @Test
     public void updateStockInfo2() {
         // 非同质化：0x7d0103ed146c8b3981ac34a067de40196ea59420
+        UpdateStockInfoBo bo = new UpdateStockInfoBo();
+        bo.setTokenId(29);
+        bo.setAddress(address);
+        bo.setPublicKey(publicKey);
+        bo.setPrivateKey(privateKey);
+        bo.setContractAddress("0x7d0103ed146c8b3981ac34a067de40196ea59420");
+        bo.setUrl("ipfs://abc123456.ca");
+        bo.setUrlHash("xxx123");
+        bo.setPrice(2990L);
+        bo.setSellStatus(1);
+
+        String txHash = sdkNftService.updateStockInfo(bo);
+        System.out.println(txHash);
     }
 
     @Test
