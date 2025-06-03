@@ -1,7 +1,6 @@
 package net.cqchain.sdk.nft.feign;
 
 import feign.Feign;
-import feign.form.FormEncoder;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 import feign.okhttp.OkHttpClient;
@@ -18,7 +17,7 @@ public class ClientFactory {
         if (clazz == UploadClient.class) {
             return Feign.builder()
                     .client(new OkHttpClient())
-                    .encoder(new FormEncoder())
+                    .encoder(new MultiEncoder())
                     .decoder(new GsonDecoder())
                     .requestInterceptor(template -> {
                         String token = TokenManager.getInstance().getToken();
