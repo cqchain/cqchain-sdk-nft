@@ -18,4 +18,9 @@ public class SdkConfig {
      * 平台私钥（用于加签）
      */
     private String privateKey;
+
+    /**
+     * 访问地址
+     */
+    private String url;
 }

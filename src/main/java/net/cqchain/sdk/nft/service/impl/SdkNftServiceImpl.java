@@ -18,9 +18,7 @@ public class SdkNftServiceImpl implements SdkNftService {
     private static final String[] DEPLOY_FIELDS = new String[]{"address", "publicKey", "name", "symbol", "homogeneous", "publishCount", "stockInfo"};
     private static final String[] PUBLISH_COUNT_FIELDS = new String[]{"address", "publicKey", "contractAddress", "publishCount"};
     private static final String[] PUBLISH_FIELDS = new String[]{"address", "publicKey", "contractAddress", "homogeneous", "publishCount", "stockInfoList"};
-    private static final String[] PRICE_FIELDS = new String[]{"address", "publicKey", "contractAddress", "price", "tokenId"};
-    private static final String[] STATUS_FIELDS = new String[]{"address", "publicKey", "contractAddress", "sellStatus", "tokenId"};
-    private static final String[] URL_FIELDS = new String[]{"address", "publicKey", "contractAddress", "url", "urlHash", "tokenId"};
+    private static final String[] STOCK_INFO_FIELDS = new String[]{"address", "publicKey", "contractAddress", "tokenId", "url", "urlHash", "price", "sellStatus"};
     private static final String[] TRANSFER_FIELDS = new String[]{"address", "publicKey", "toAddress", "contractAddress", "tokenId"};
 
     private final NftClient nftClient;
@@ -88,44 +86,16 @@ public class SdkNftServiceImpl implements SdkNftService {
     }
 
     @Override
-    public String updatePrice(UpdatePriceBo bo) {
-        PriceDto dto = new PriceDto();
+    public String updateStockInfo(UpdateStockInfoBo bo) {
+        UpdateStockInfoDto dto = new UpdateStockInfoDto();
         BeanUtils.copyProperties(bo, dto);
 
         // 进行签名
-        String json = JsonUtil.toOrderedJson(bo, PRICE_FIELDS);
+        String json = JsonUtil.toOrderedJson(bo, STOCK_INFO_FIELDS);
         String signature = getSignature(bo.getPrivateKey(), json);
         dto.setSignature(signature);
 
-        BaseResponse<String> response = nftClient.updatePrice(dto);
-        return response.getData();
-    }
-
-    @Override
-    public String updateStatus(UpdateStatusBo bo) {
-        StatusDto dto = new StatusDto();
-        BeanUtils.copyProperties(bo, dto);
-
-        // 进行签名
-        String json = JsonUtil.toOrderedJson(bo, STATUS_FIELDS);
-        String signature = getSignature(bo.getPrivateKey(), json);
-        dto.setSignature(signature);
-
-        BaseResponse<String> response = nftClient.updateStatus(dto);
-        return response.getData();
-    }
-
-    @Override
-    public String updateUrl(UpdateUrlBo bo) {
-        UrlDto dto = new UrlDto();
-        BeanUtils.copyProperties(bo, dto);
-
-        // 进行签名
-        String json = JsonUtil.toOrderedJson(bo, URL_FIELDS);
-        String signature = getSignature(bo.getPrivateKey(), json);
-        dto.setSignature(signature);
-
-        BaseResponse<String> response = nftClient.updateUrl(dto);
+        BaseResponse<String> response = nftClient.updateStockInfo(dto);
         return response.getData();
     }
 

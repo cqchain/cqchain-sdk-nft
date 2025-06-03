@@ -33,23 +33,9 @@ public class SdkNftServiceTest {
     @Test
     public void testDeploy() {
         // 同质化合约
-        // 0x35536ef68281e4a503a3a884c59ef098cf95627b
-        DeployBo bo = new DeployBo();
-        bo.setAddress(address);
-        bo.setPublicKey(publicKey);
-        bo.setPrivateKey(privateKey);
-        bo.setName("test002");
-        bo.setSymbol("test002");
-        bo.setHomogeneous(1);
-        bo.setPublishCount(100);
-        DeployVo vo = sdkNftService.deploy(bo);
-        System.out.println(vo);
-    }
-
-    @Test
-    public void testDeploy2() {
-        // 同质化合约，同时更新stock信息
         // 0x922171bdbd5fc1380031539ebada0b014ee875d7
+        // 0x35536ef68281e4a503a3a884c59ef098cf95627b
+        // 0x7818004bde1e7e04bc88544314a0716e6b663339
         StockInfoBo stockInfoBo = new StockInfoBo();
         stockInfoBo.setUrl("https://www.example.com/1.png");
         stockInfoBo.setUrlHash("hashxxxxxxxxxxxxxxxxxxxxxxxxx");
@@ -60,20 +46,22 @@ public class SdkNftServiceTest {
         bo.setAddress(address);
         bo.setPublicKey(publicKey);
         bo.setPrivateKey(privateKey);
-        bo.setName("test004");
-        bo.setSymbol("test004");
+        bo.setName("test002");
+        bo.setSymbol("test002");
         bo.setHomogeneous(1);
         bo.setPublishCount(100);
         bo.setStockInfo(stockInfoBo);
+
         DeployVo vo = sdkNftService.deploy(bo);
         System.out.println(vo);
     }
 
     @Test
-    public void testDeploy3() {
+    public void testDeploy2() {
         // 非同质化合约
         // 0x7d0103ed146c8b3981ac34a067de40196ea59420
         // 0x5bf03c3cc8d6af5f820a9eb1950b037b3189df43
+        // 0xe35d977f6745cb88d97dce016a1d80879b61b08b
         DeployBo bo = new DeployBo();
         bo.setAddress(address);
         bo.setPublicKey(publicKey);
@@ -92,7 +80,7 @@ public class SdkNftServiceTest {
         bo.setAddress(address);
         bo.setPublicKey(publicKey);
         bo.setPrivateKey(privateKey);
-        bo.setContractAddress("0x35536ef68281e4a503a3a884c59ef098cf95627b");
+        bo.setContractAddress("0x7818004bde1e7e04bc88544314a0716e6b663339");
         bo.setPublishCount(8000);
         String txHash = sdkNftService.updatePublishCount(bo);
         System.out.println(txHash);
@@ -115,9 +103,9 @@ public class SdkNftServiceTest {
         bo.setAddress(address);
         bo.setPublicKey(publicKey);
         bo.setPrivateKey(privateKey);
-        bo.setContractAddress("0x35536ef68281e4a503a3a884c59ef098cf95627b");
+        bo.setContractAddress("0x7818004bde1e7e04bc88544314a0716e6b663339");
         bo.setHomogeneous(1);
-        bo.setPublishCount(1000);
+        bo.setPublishCount(10);
         bo.setStockInfoList(stockInfoBoList);
 
         String txHash = sdkNftService.publish(bo);
@@ -153,86 +141,15 @@ public class SdkNftServiceTest {
     }
 
     @Test
-    public void testUpdatePrice() {
+    public void updateStockInfo() {
         // 同质化：0x35536ef68281e4a503a3a884c59ef098cf95627b
-        UpdatePriceBo bo = new UpdatePriceBo();
-        bo.setAddress(address);
-        bo.setPublicKey(publicKey);
-        bo.setPrivateKey(privateKey);
-        bo.setContractAddress("0x35536ef68281e4a503a3a884c59ef098cf95627b");
-        bo.setPrice(2990L);
-        String txHash = sdkNftService.updatePrice(bo);
-        System.out.println(txHash);
+        UpdateStockInfoBo bo = new UpdateStockInfoBo();
+
     }
 
     @Test
-    public void testUpdatePrice2() {
+    public void updateStockInfo2() {
         // 非同质化：0x7d0103ed146c8b3981ac34a067de40196ea59420
-        UpdatePriceBo bo = new UpdatePriceBo();
-        bo.setAddress(address);
-        bo.setPublicKey(publicKey);
-        bo.setPrivateKey(privateKey);
-        bo.setContractAddress("0x7d0103ed146c8b3981ac34a067de40196ea59420");
-        bo.setPrice(2990L);
-        bo.setTokenId(21);
-        String txHash = sdkNftService.updatePrice(bo);
-        System.out.println(txHash);
-    }
-
-    @Test
-    public void testUpdateStatus() {
-        // 同质化：0x35536ef68281e4a503a3a884c59ef098cf95627b
-        UpdateStatusBo bo = new UpdateStatusBo();
-        bo.setAddress(address);
-        bo.setPublicKey(publicKey);
-        bo.setPrivateKey(privateKey);
-        bo.setContractAddress("0x35536ef68281e4a503a3a884c59ef098cf95627b");
-        bo.setSellStatus(2);
-        String txHash = sdkNftService.updateStatus(bo);
-        System.out.println(txHash);
-    }
-
-    @Test
-    public void testUpdateStatus2() {
-        // 非同质化：0x7d0103ed146c8b3981ac34a067de40196ea59420
-        UpdateStatusBo bo = new UpdateStatusBo();
-        bo.setAddress(address);
-        bo.setPublicKey(publicKey);
-        bo.setPrivateKey(privateKey);
-        bo.setContractAddress("0x7d0103ed146c8b3981ac34a067de40196ea59420");
-        bo.setSellStatus(2);
-        bo.setTokenId(21);
-        String txHash = sdkNftService.updateStatus(bo);
-        System.out.println(txHash);
-    }
-
-    @Test
-    public void testUpdateUrl() {
-        // 同质化：0x35536ef68281e4a503a3a884c59ef098cf95627b
-        UpdateUrlBo bo = new UpdateUrlBo();
-        bo.setAddress(address);
-        bo.setPublicKey(publicKey);
-        bo.setPrivateKey(privateKey);
-        bo.setContractAddress("0x35536ef68281e4a503a3a884c59ef098cf95627b");
-        bo.setUrl("url://test123456");
-        bo.setUrlHash("hash1234456");
-        String txHash = sdkNftService.updateUrl(bo);
-        System.out.println(txHash);
-    }
-
-    @Test
-    public void testUpdateUrl2() {
-        // 非同质化：0x7d0103ed146c8b3981ac34a067de40196ea59420
-        UpdateUrlBo bo = new UpdateUrlBo();
-        bo.setAddress(address);
-        bo.setPublicKey(publicKey);
-        bo.setPrivateKey(privateKey);
-        bo.setContractAddress("0x7d0103ed146c8b3981ac34a067de40196ea59420");
-        bo.setUrl("url://test123456");
-        bo.setUrlHash("hash1234456");
-        bo.setTokenId(21);
-        String txHash = sdkNftService.updateUrl(bo);
-        System.out.println(txHash);
     }
 
     @Test

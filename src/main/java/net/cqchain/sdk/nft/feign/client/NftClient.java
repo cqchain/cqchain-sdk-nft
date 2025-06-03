@@ -23,22 +23,10 @@ public interface NftClient {
     BaseResponse<String> publish(PublishDto dto);
 
     /**
-     * 更新价格
+     * 更新库存信息
      */
-    @RequestLine("PUT /nft/price")
-    BaseResponse<String> updatePrice(PriceDto dto);
-
-    /**
-     * 更新销售状态
-     */
-    @RequestLine("PUT /nft/status")
-    BaseResponse<String> updateStatus(StatusDto dto);
-
-    /**
-     * 更新文件地址
-     */
-    @RequestLine("PUT /nft/url")
-    BaseResponse<String> updateUrl(UrlDto dto);
+    @RequestLine("PUT /nft/stock-info")
+    BaseResponse<String> updateStockInfo(UpdateStockInfoDto dto);
 
     /**
      * 资产转移

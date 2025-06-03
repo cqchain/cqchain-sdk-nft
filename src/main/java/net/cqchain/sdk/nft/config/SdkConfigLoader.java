@@ -46,6 +46,7 @@ public class SdkConfigLoader {
         sdkConfig.setAddress(props.get("cqchain-sdk-nft.address").toString());
         sdkConfig.setPublicKey(props.get("cqchain-sdk-nft.public-key").toString());
         sdkConfig.setPrivateKey(props.get("cqchain-sdk-nft.private-key").toString());
+        sdkConfig.setUrl(props.get("cqchain-sdk-nft.url").toString());
     }
 
     private static void loadFromYaml(InputStream in) {
@@ -58,6 +59,7 @@ public class SdkConfigLoader {
             sdkConfig.setAddress(configMap.get("address").toString());
             sdkConfig.setPublicKey(configMap.get("public-key").toString());
             sdkConfig.setPrivateKey(configMap.get("private-key").toString());
+            sdkConfig.setUrl(configMap.get("url").toString());
         }
     }
 }

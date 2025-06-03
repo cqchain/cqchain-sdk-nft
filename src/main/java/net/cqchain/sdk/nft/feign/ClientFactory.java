@@ -1,18 +1,20 @@
 package net.cqchain.sdk.nft.feign;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import feign.Feign;
 import feign.form.FormEncoder;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
 import feign.okhttp.OkHttpClient;
+import net.cqchain.sdk.nft.config.SdkConfig;
+import net.cqchain.sdk.nft.config.SdkConfigLoader;
 import net.cqchain.sdk.nft.feign.client.NftClient;
 import net.cqchain.sdk.nft.feign.client.UploadClient;
 import net.cqchain.sdk.nft.feign.client.UserClient;
 
 public class ClientFactory {
     public static <T> T create(Class<T> clazz) {
+        SdkConfig config = SdkConfigLoader.getSdkConfig();
+
         if (clazz == UploadClient.class) {
             return Feign.builder()
                     .client(new OkHttpClient())
@@ -22,8 +24,9 @@ public class ClientFactory {
                         String token = TokenManager.getInstance().getToken();
                         template.header("Authorization", "Bearer " + token);
                     })
-                    .target(clazz, ClientConstants.URL);
+                    .target(clazz, config.getUrl());
         }
+
         return Feign.builder()
                 .client(new OkHttpClient())
                 .encoder(new GsonEncoder())
@@ -35,6 +38,6 @@ public class ClientFactory {
                         template.header("Authorization", "Bearer " + token);
                     }
                 })
-                .target(clazz, ClientConstants.URL);
+                .target(clazz, config.getUrl());
     }
 }
