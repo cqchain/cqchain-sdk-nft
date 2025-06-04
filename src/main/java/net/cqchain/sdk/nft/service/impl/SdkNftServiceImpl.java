@@ -86,6 +86,19 @@ public class SdkNftServiceImpl implements SdkNftService {
     }
 
     @Override
+    public String setStockInfo(UpdateStockInfoBo bo) {
+        UpdateStockInfoDto dto = new UpdateStockInfoDto();
+        BeanUtils.copyProperties(bo, dto);
+
+        // 进行签名
+        String json = JsonUtil.toOrderedJson(bo, STOCK_INFO_FIELDS);
+        String signature = getSignature(bo.getPrivateKey(), json);
+        dto.setSignature(signature);
+        BaseResponse<String> response = nftClient.setStockInfo(dto);
+        return response.getData();
+    }
+
+    @Override
     public String updateStockInfo(UpdateStockInfoBo bo) {
         UpdateStockInfoDto dto = new UpdateStockInfoDto();
         BeanUtils.copyProperties(bo, dto);

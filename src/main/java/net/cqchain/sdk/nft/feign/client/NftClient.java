@@ -23,6 +23,12 @@ public interface NftClient {
     BaseResponse<String> publish(PublishDto dto);
 
     /**
+     * 创建库存信息
+     */
+    @RequestLine("POST /nft/stock-info")
+    BaseResponse<String> setStockInfo(UpdateStockInfoDto dto);
+
+    /**
      * 更新库存信息
      */
     @RequestLine("PUT /nft/stock-info")

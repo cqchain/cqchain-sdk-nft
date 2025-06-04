@@ -141,6 +141,16 @@ public class SdkNftServiceTest {
     }
 
     @Test
+    public void setStockInfo() {
+        //     TODO
+    }
+
+    @Test
+    public void setStockInfo2() {
+        //     TODO
+    }
+
+    @Test
     public void updateStockInfo() {
         // 同质化：0x35536ef68281e4a503a3a884c59ef098cf95627b
         UpdateStockInfoBo bo = new UpdateStockInfoBo();
