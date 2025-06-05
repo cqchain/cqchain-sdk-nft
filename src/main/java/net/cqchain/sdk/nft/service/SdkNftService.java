@@ -10,7 +10,7 @@ public interface SdkNftService {
 
     String publish(PublishBo bo);
 
-    String setStockInfo(UpdateStockInfoBo bo);
+    String createStockInfo(CreateStockInfoBo bo);
 
     String updateStockInfo(UpdateStockInfoBo bo);
 

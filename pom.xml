@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.cqchain.sdk</groupId>
     <artifactId>cqchain-sdk-nft</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 
     <name>cqchain-sdk-nft</name>
     <description>Nft sdk for cqchain.net</description>

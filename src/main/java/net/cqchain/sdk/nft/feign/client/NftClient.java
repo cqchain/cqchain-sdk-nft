@@ -26,7 +26,7 @@ public interface NftClient {
      * 创建库存信息
      */
     @RequestLine("POST /nft/stock-info")
-    BaseResponse<String> setStockInfo(UpdateStockInfoDto dto);
+    BaseResponse<String> createStockInfo(CreateStockInfoDto dto);
 
     /**
      * 更新库存信息
