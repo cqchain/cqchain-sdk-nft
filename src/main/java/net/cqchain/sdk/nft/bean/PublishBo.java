@@ -20,7 +20,6 @@ public class PublishBo {
     private String contractAddress;
 
     // 是否同质化 0否 1是
-    // 如果homogeneous=1，则stockInfoList只能传一个元素
     private Integer homogeneous;
 
     // 发行份数

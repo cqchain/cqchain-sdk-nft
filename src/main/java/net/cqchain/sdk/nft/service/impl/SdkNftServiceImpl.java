@@ -1,6 +1,7 @@
 package net.cqchain.sdk.nft.service.impl;
 
 import net.cqchain.sdk.nft.bean.*;
+import net.cqchain.sdk.nft.config.SdkConfig;
 import net.cqchain.sdk.nft.feign.ClientFactory;
 import net.cqchain.sdk.nft.feign.client.NftClient;
 import net.cqchain.sdk.nft.feign.entity.*;
@@ -25,6 +26,10 @@ public class SdkNftServiceImpl implements SdkNftService {
 
     public SdkNftServiceImpl() {
         this.nftClient = ClientFactory.create(NftClient.class);
+    }
+
+    public SdkNftServiceImpl(SdkConfig config) {
+        this.nftClient = ClientFactory.create(NftClient.class, config);
     }
 
     @Override

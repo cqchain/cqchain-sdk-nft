@@ -1,7 +1,9 @@
 package net.cqchain.sdk.nft.service.impl;
 
 import feign.form.FormData;
+import net.cqchain.sdk.nft.config.SdkConfig;
 import net.cqchain.sdk.nft.feign.ClientFactory;
+import net.cqchain.sdk.nft.feign.client.NftClient;
 import net.cqchain.sdk.nft.feign.client.UploadClient;
 import net.cqchain.sdk.nft.feign.entity.BaseResponse;
 import net.cqchain.sdk.nft.feign.entity.ReadFileDto;
@@ -12,6 +14,10 @@ public class SdkUploadServiceImpl implements SdkUploadService {
 
     public SdkUploadServiceImpl() {
         this.uploadClient = ClientFactory.create(UploadClient.class);
+    }
+
+    public SdkUploadServiceImpl(SdkConfig config) {
+        this.uploadClient = ClientFactory.create(UploadClient.class, config);
     }
 
     @Override

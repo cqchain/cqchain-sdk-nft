@@ -2,7 +2,9 @@ package net.cqchain.sdk.nft.service.impl;
 
 import net.cqchain.sdk.nft.bean.CreateBusinessUserBo;
 import net.cqchain.sdk.nft.bean.CreateUserBo;
+import net.cqchain.sdk.nft.config.SdkConfig;
 import net.cqchain.sdk.nft.feign.ClientFactory;
+import net.cqchain.sdk.nft.feign.client.UploadClient;
 import net.cqchain.sdk.nft.feign.client.UserClient;
 import net.cqchain.sdk.nft.feign.entity.BaseResponse;
 import net.cqchain.sdk.nft.feign.entity.UserBusinessDto;
@@ -16,6 +18,10 @@ public class SdkUserServiceImpl implements SdkUserService {
 
     public SdkUserServiceImpl() {
         this.userClient = ClientFactory.create(UserClient.class);
+    }
+
+    public SdkUserServiceImpl(SdkConfig config) {
+        this.userClient = ClientFactory.create(UserClient.class, config);
     }
 
     @Override

@@ -11,9 +11,7 @@ import net.cqchain.sdk.nft.feign.client.UploadClient;
 import net.cqchain.sdk.nft.feign.client.UserClient;
 
 public class ClientFactory {
-    public static <T> T create(Class<T> clazz) {
-        SdkConfig config = SdkConfigLoader.getSdkConfig();
-
+    public static <T> T create(Class<T> clazz, SdkConfig config) {
         if (clazz == UploadClient.class) {
             return Feign.builder()
                     .client(new OkHttpClient())
@@ -38,5 +36,10 @@ public class ClientFactory {
                     }
                 })
                 .target(clazz, config.getUrl());
+    }
+
+    public static <T> T create(Class<T> clazz) {
+        SdkConfig config = SdkConfigLoader.getSdkConfig();
+        return create(clazz, config);
     }
 }

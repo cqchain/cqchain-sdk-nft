@@ -24,7 +24,6 @@ public class PublishDto {
     private String contractAddress;
 
     // 是否同质化 0否 1是
-    // 如果homogeneous=1，则stockInfoList只能传一个元素
     @NotNull(message = "是否同质化不能为空")
     private Integer homogeneous;
 
